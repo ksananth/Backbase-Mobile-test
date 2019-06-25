@@ -1,4 +1,6 @@
-package com.backbase.mobiletest.ui.citymap.contract.presenter;
+package com.backbase.mobiletest.ui.citymap.presenter;
 
-public class CityDetailPresenter {
+import com.backbase.mobiletest.ui.citymap.contract.CityDetail;
+
+public class CityDetailPresenter implements CityDetail.Presenter {
 }

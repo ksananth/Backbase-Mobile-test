@@ -1,4 +1,4 @@
-package com.backbase.mobiletest.ui.citymap.contract.contract;
+package com.backbase.mobiletest.ui.citymap.contract;
 
 public interface CityDetail {
     interface Model {

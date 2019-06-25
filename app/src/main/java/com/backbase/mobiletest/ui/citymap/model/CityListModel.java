@@ -1,4 +1,6 @@
 package com.backbase.mobiletest.ui.citymap.model;
 
-public class CityListModel {
+import com.backbase.mobiletest.ui.citymap.contract.CityList;
+
+public class CityListModel implements CityList.Model {
 }
