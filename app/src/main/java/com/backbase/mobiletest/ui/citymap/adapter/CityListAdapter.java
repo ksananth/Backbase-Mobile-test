@@ -16,11 +16,13 @@ import com.backbase.mobiletest.ui.citymap.model.city.Country;
 import java.util.ArrayList;
 
 public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityListHolder> implements Filterable {
-    ArrayList<Country> filterList;
+    private ArrayList<Country> filterList;
+    private boolean mTwoPane;
 
-    public CityListAdapter(ArrayList<Country> filterList)
+    public CityListAdapter(ArrayList<Country> filterList, boolean mTwoPane)
     {
         this.filterList = filterList;
+        this.mTwoPane = mTwoPane;
     }
 
     @Override

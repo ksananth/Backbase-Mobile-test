@@ -15,7 +15,7 @@ public class CityListPresenter extends Filter implements  CityList.Presenter {
     private ArrayList<Country> countryLists;
     private ArrayList<Country> filteredCountryList;
 
-    CityListPresenter(CityList.View view, CityList.Model model) {
+    public CityListPresenter(CityList.View view, CityList.Model model) {
         this.view = new WeakReference<>(view);
         this.model = new WeakReference<>(model);
     }
@@ -56,6 +56,11 @@ public class CityListPresenter extends Filter implements  CityList.Presenter {
     @Override
     public ArrayList<Country> getFilteredCountryList() {
         return filteredCountryList;
+    }
+
+    @Override
+    public ArrayList<Country> getCountryList() {
+        return countryLists;
     }
 
     @Override

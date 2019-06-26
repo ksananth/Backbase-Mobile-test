@@ -14,6 +14,7 @@ public interface CityList {
         void init();
         void filterWith(CharSequence filterText);
         ArrayList<Country> getFilteredCountryList();
+        ArrayList<Country> getCountryList();
     }
 
     interface View {
