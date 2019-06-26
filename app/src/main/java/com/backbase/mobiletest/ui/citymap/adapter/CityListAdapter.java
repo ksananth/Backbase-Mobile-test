@@ -32,7 +32,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityLi
     @Override
     public void onBindViewHolder(CityListHolder holder, int position) {
 
-        holder.txtCity.setText(countries.get(position).getCountry());
+        holder.txtCity.setText(countries.get(position).getName());
         holder.txtCoordinates.setText(countries.get(position).getCoord().getLat().toString());
 
         holder.setItemClickListener(new ItemClickListener() {
@@ -47,6 +47,10 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityLi
     @Override
     public int getItemCount() {
         return countries.size();
+    }
+
+    public void setFilteredList(ArrayList<Country> results) {
+        countries = results;
     }
 
     public class CityListHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

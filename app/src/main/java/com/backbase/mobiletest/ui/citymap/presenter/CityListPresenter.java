@@ -32,7 +32,7 @@ public class CityListPresenter extends Filter implements  CityList.Presenter {
 
             for (int i = 0; i<countryLists.size(); i++) {
                 //CHECK
-                if(countryLists.get(i).getCountry().toUpperCase().contains(text)) {
+                if(countryLists.get(i).getName().toUpperCase().contains(text)) {
                     filteredCountries.add(countryLists.get(i));
                 }
             }

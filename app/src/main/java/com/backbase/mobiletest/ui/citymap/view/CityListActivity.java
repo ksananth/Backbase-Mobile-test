@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 
 import com.backbase.mobiletest.R;
 import com.backbase.mobiletest.data.AppDataManager;
@@ -15,10 +16,11 @@ import com.backbase.mobiletest.ui.citymap.presenter.CityListPresenter;
 
 import java.util.ArrayList;
 
-public class CityListActivity extends Activity implements CityList.View {
+public class CityListActivity extends Activity implements CityList.View, SearchView.OnQueryTextListener {
 
     private boolean mTwoPane;
     private CityListPresenter cityListPresenter;
+    private CityListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,11 @@ public class CityListActivity extends Activity implements CityList.View {
 
 
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.list_city);
+        SearchView searchView = (SearchView)findViewById(R.id.search_view);
         setupRecyclerView(recyclerView);
+        searchView.setIconified(false);
+        searchView.setIconifiedByDefault(false);
+        searchView.setOnQueryTextListener(this);
     }
 
     private boolean isTwoPane() {
@@ -47,11 +53,24 @@ public class CityListActivity extends Activity implements CityList.View {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new CityListAdapter(cityListPresenter.getCountryList(), mTwoPane));
+        adapter = new CityListAdapter(cityListPresenter.getCountryList(), mTwoPane);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
     public void updateList(ArrayList<Country> results) {
+        adapter.setFilteredList(results);
+        adapter.notifyDataSetChanged();
+    }
 
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        cityListPresenter.filterWith(newText);
+        return false;
     }
 }
