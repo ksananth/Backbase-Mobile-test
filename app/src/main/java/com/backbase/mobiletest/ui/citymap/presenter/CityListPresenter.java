@@ -25,17 +25,14 @@ public class CityListPresenter extends Filter implements  CityList.Presenter {
     protected FilterResults performFiltering(CharSequence text) {
         FilterResults results = new FilterResults();
 
-        if(text != null && text.length() > 0)
-        {
+        if(text != null && text.length() > 0) {
             //CHANGE TO UPPER
             text = text.toString().toUpperCase();
             ArrayList<Country> filteredCountries = new ArrayList<>();
 
-            for (int i = 0; i<countryLists.size(); i++)
-            {
+            for (int i = 0; i<countryLists.size(); i++) {
                 //CHECK
-                if(countryLists.get(i).getCountry().toUpperCase().contains(text))
-                {
+                if(countryLists.get(i).getCountry().toUpperCase().contains(text)) {
                     filteredCountries.add(countryLists.get(i));
                 }
             }
