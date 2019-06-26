@@ -4,6 +4,5 @@ import com.backbase.mobiletest.utils.BaseResponseModel;
 
 
 public interface AssetHelper {
-    String getAssetContent(String filename);
-    BaseResponseModel parseJson(Class<? extends BaseResponseModel> responseModel, String json);
+    BaseResponseModel getAssetContent(String filename, Class<? extends BaseResponseModel> responseModel);
 }

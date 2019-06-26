@@ -20,8 +20,7 @@ public class AppAssetHelper implements AssetHelper {
         this.context = new WeakReference<>(context);
     }
 
-    @Override
-    public String getAssetContent(String filename) {
+    private String getAssetContent(String filename) {
         if(context.get() != null){
             try{
                 AssetManager manager = context.get().getAssets();
@@ -38,10 +37,14 @@ public class AppAssetHelper implements AssetHelper {
         return null;
     }
 
-    @Override
-    public BaseResponseModel parseJson(Class<? extends BaseResponseModel> responseModel, String json) {
+    private BaseResponseModel parseJson(Class<? extends BaseResponseModel> responseModel, String json) {
         Gson gson = new Gson();
         BaseResponseModel result = gson.fromJson(json, responseModel);
         return result;
+    }
+
+    @Override
+    public BaseResponseModel getAssetContent(String filename, Class<? extends BaseResponseModel> responseModel) {
+        return parseJson(responseModel, getAssetContent(filename) );
     }
 }

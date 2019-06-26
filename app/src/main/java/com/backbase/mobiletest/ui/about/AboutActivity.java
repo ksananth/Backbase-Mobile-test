@@ -5,7 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.backbase.android.common.utils.R;
+import com.backbase.mobiletest.R;
+
 
 public class AboutActivity extends AppCompatActivity implements About.View {
 
@@ -21,7 +22,7 @@ public class AboutActivity extends AppCompatActivity implements About.View {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_about);
         AboutPresenterImpl aboutPresenter = new AboutPresenterImpl(this, this);
         companyName = findViewById(R.id.companyName);
         companyAddress = findViewById(R.id.companyAdress);
