@@ -21,7 +21,6 @@ public class CityListModel implements CityList.Model {
 
     @Override
     public ArrayList<Country> getCityList() {
-        CountryList list = ((CountryList)(dataManager.getAssetContent(CITIES_FILENAME, CountryList.class)));
-        return list.getCountryList();
+        return (dataManager.getAssetContent(CITIES_FILENAME));
     }
 }

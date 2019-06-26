@@ -3,7 +3,11 @@ package com.backbase.mobiletest.data;
 import android.content.Context;
 
 import com.backbase.mobiletest.data.asset.AppAssetHelper;
+import com.backbase.mobiletest.ui.citymap.model.city.Country;
 import com.backbase.mobiletest.utils.BaseResponseModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AppDataManager implements DataManager {
 
@@ -15,7 +19,7 @@ public class AppDataManager implements DataManager {
 
 
     @Override
-    public BaseResponseModel getAssetContent(String filename, Class<? extends BaseResponseModel> responseModel) {
-        return assetHelper.getAssetContent(filename, responseModel);
+    public ArrayList<Country> getAssetContent(String filename) {
+        return assetHelper.getAssetContent(filename);
     }
 }

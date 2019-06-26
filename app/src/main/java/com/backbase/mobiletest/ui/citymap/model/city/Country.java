@@ -1,9 +1,10 @@
 package com.backbase.mobiletest.ui.citymap.model.city;
 
+import com.backbase.mobiletest.utils.BaseResponseModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Country {
+public class Country extends BaseResponseModel {
     @SerializedName("country")
     @Expose
     private String country;

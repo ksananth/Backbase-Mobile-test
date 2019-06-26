@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.util.Log;
 
-import com.backbase.mobiletest.utils.BaseResponseModel;
+import com.backbase.mobiletest.ui.citymap.model.city.Country;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AppAssetHelper implements AssetHelper {
 
@@ -20,7 +23,7 @@ public class AppAssetHelper implements AssetHelper {
         this.context = new WeakReference<>(context);
     }
 
-    private String getAssetContent(String filename) {
+    private String getJson(String filename) {
         if(context.get() != null){
             try{
                 AssetManager manager = context.get().getAssets();
@@ -37,14 +40,14 @@ public class AppAssetHelper implements AssetHelper {
         return null;
     }
 
-    private BaseResponseModel parseJson(Class<? extends BaseResponseModel> responseModel, String json) {
+    private ArrayList<Country> parseJson(String json) {
         Gson gson = new Gson();
-        BaseResponseModel result = gson.fromJson(json, responseModel);
+        ArrayList<Country> result = gson.fromJson(json, new TypeToken<ArrayList<Country>>() {}.getType());
         return result;
     }
 
     @Override
-    public BaseResponseModel getAssetContent(String filename, Class<? extends BaseResponseModel> responseModel) {
-        return parseJson(responseModel, getAssetContent(filename) );
+    public ArrayList<Country> getAssetContent(String filename) {
+        return parseJson(getJson(filename) );
     }
 }

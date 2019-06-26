@@ -1,13 +1,10 @@
 package com.backbase.mobiletest.ui.citymap.adapter;
 
-import android.content.Context;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.backbase.mobiletest.R;
@@ -15,13 +12,13 @@ import com.backbase.mobiletest.ui.citymap.model.city.Country;
 
 import java.util.ArrayList;
 
-public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityListHolder> implements Filterable {
-    private ArrayList<Country> filterList;
+public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityListHolder> {
+    private ArrayList<Country> countries;
     private boolean mTwoPane;
 
-    public CityListAdapter(ArrayList<Country> filterList, boolean mTwoPane)
+    public CityListAdapter(ArrayList<Country> countryArrayList, boolean mTwoPane)
     {
-        this.filterList = filterList;
+        this.countries = countryArrayList;
         this.mTwoPane = mTwoPane;
     }
 
@@ -35,13 +32,13 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityLi
     @Override
     public void onBindViewHolder(CityListHolder holder, int position) {
 
-        holder.txtCity.setText(filterList.get(position).getCountry());
-        holder.txtCoordinates.setText(filterList.get(position).getCoord().getLat().toString());
+        holder.txtCity.setText(countries.get(position).getCountry());
+        holder.txtCoordinates.setText(countries.get(position).getCoord().getLat().toString());
 
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-                Snackbar.make(v,filterList.get(pos).getName(),Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(v, countries.get(pos).getName(),Snackbar.LENGTH_SHORT).show();
             }
         });
 
@@ -49,17 +46,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityLi
 
     @Override
     public int getItemCount() {
-        return filterList.size();
-    }
-
-    @Override
-    public Filter getFilter() {
-        if(filterList == null)
-        {
-            filterList = new CustomFilter(filterList,this);
-        }
-
-        return filter;
+        return countries.size();
     }
 
     public class CityListHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

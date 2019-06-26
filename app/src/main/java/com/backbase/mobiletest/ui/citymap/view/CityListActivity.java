@@ -32,8 +32,8 @@ public class CityListActivity extends Activity implements CityList.View {
         mTwoPane = isTwoPane();
 
 
-        View recyclerView = findViewById(R.id.item_list);
-        setupRecyclerView((RecyclerView) recyclerView);
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.list_city);
+        setupRecyclerView(recyclerView);
     }
 
     private boolean isTwoPane() {
@@ -42,12 +42,13 @@ public class CityListActivity extends Activity implements CityList.View {
             // large-land layouts
             // If this view is present, then the
             // activity should be in two-pane mode.
-            mTwoPane = true;
+            return true;
         }
+        return false;
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new CityListAdapter(cityListPresenter.getFilteredCountryList(), mTwoPane));
+        recyclerView.setAdapter(new CityListAdapter(cityListPresenter.getCountryList(), mTwoPane));
     }
 
     @Override

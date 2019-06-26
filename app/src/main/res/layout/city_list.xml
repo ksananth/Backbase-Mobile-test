@@ -20,7 +20,7 @@ tools:context="com.backbase.mobiletest.ui.citymap.view.CityListActivity">
         app:layout_constraintTop_toTopOf="parent"></android.support.v7.widget.SearchView>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/list_city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
