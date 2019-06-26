@@ -1,6 +1,5 @@
 package com.backbase.mobiletest.ui.citymap.presenter;
 
-import android.content.Context;
 import android.widget.Filter;
 
 import com.backbase.mobiletest.ui.citymap.contract.CityList;
@@ -11,32 +10,30 @@ import java.util.ArrayList;
 
 public class CityListPresenter extends Filter implements  CityList.Presenter {
 
-    private WeakReference<Context> context;
     private WeakReference<CityList.View> view;
     private WeakReference<CityList.Model> model;
     private ArrayList<Country> countryLists;
 
-    CityListPresenter(Context context, CityList.View view, CityList.Model model) {
-        this.context = new WeakReference<>(context);
+    CityListPresenter(CityList.View view, CityList.Model model) {
         this.view = new WeakReference<>(view);
         this.model = new WeakReference<>(model);
     }
 
 
     @Override
-    protected FilterResults performFiltering(CharSequence constraint) {
+    protected FilterResults performFiltering(CharSequence text) {
         FilterResults results = new FilterResults();
 
-        if(constraint != null && constraint.length() > 0)
+        if(text != null && text.length() > 0)
         {
             //CHANGE TO UPPER
-            constraint = constraint.toString().toUpperCase();
+            text = text.toString().toUpperCase();
             ArrayList<Country> filteredCountries = new ArrayList<>();
 
             for (int i = 0; i<countryLists.size(); i++)
             {
                 //CHECK
-                if(countryLists.get(i).getName().toUpperCase().contains(constraint))
+                if(countryLists.get(i).getName().toUpperCase().contains(text))
                 {
                     filteredCountries.add(countryLists.get(i));
                 }
@@ -49,8 +46,6 @@ public class CityListPresenter extends Filter implements  CityList.Presenter {
             results.values = countryLists;
 
         }
-
-
         return results;
     }
 
@@ -62,5 +57,10 @@ public class CityListPresenter extends Filter implements  CityList.Presenter {
     @Override
     public void init() {
         countryLists = model.get().getCityList();
+    }
+
+    @Override
+    public void filterWith(CharSequence filterText) {
+        publishResults(filterText, performFiltering(filterText));
     }
 }

@@ -13,9 +13,9 @@ import com.backbase.mobiletest.utils.BaseResponseModel;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.internal.matchers.Any;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;
@@ -29,8 +29,6 @@ import static org.mockito.Mockito.when;
 public class CityListPresenterTest {
 
     @Mock
-    private Context context;
-    @Mock
     private CityList.View view;
     @Mock
     DataManager dataManager;
@@ -42,7 +40,7 @@ public class CityListPresenterTest {
     @Before
     public void setUp() {
         model = new CityListModel(dataManager);
-        presenter = new CityListPresenter(context, view, model);
+        presenter = new CityListPresenter(view, model);
     }
 
     @Test
@@ -53,10 +51,19 @@ public class CityListPresenterTest {
     @Test
     public void shouldGetResponseFromModel_When_initCalled() {
         stubDataManager();
-
         presenter.init();
 
         Mockito.verify(dataManager).getAssetContent(CITIES_FILENAME, CountryList.class);
+    }
+
+    @Test
+    public void shouldFilterListAndUpdateView_When_filterCalled() {
+        stubDataManager();
+        presenter.init();
+
+        presenter.filterWith("Hol");
+
+        Mockito.verify(view).updateList(Matchers.<ArrayList<Country>>any());
     }
 
     private void stubDataManager() {

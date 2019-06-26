@@ -12,7 +12,7 @@ public interface CityList {
 
     interface Presenter {
         void init();
-        void filter(CharSequence filterText);
+        void filterWith(CharSequence filterText);
     }
 
     interface View {
