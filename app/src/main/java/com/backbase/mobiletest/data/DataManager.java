@@ -1,7 +1,7 @@
 package com.backbase.mobiletest.data;
 
-import com.backbase.mobiletest.data.db.DbHelper;
+import com.backbase.mobiletest.data.asset.AssetHelper;
 import com.backbase.mobiletest.data.network.ApiHelper;
 
-public interface DataManager extends ApiHelper, DbHelper {
+public interface DataManager extends ApiHelper, AssetHelper {
 }
