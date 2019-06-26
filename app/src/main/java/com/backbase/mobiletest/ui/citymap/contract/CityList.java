@@ -13,6 +13,7 @@ public interface CityList {
     interface Presenter {
         void init();
         void filterWith(CharSequence filterText);
+        ArrayList<Country> getFilteredCountryList();
     }
 
     interface View {

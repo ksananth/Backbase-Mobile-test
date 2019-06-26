@@ -13,6 +13,7 @@ public class CityListPresenter extends Filter implements  CityList.Presenter {
     private WeakReference<CityList.View> view;
     private WeakReference<CityList.Model> model;
     private ArrayList<Country> countryLists;
+    private ArrayList<Country> filteredCountryList;
 
     CityListPresenter(CityList.View view, CityList.Model model) {
         this.view = new WeakReference<>(view);
@@ -33,7 +34,7 @@ public class CityListPresenter extends Filter implements  CityList.Presenter {
             for (int i = 0; i<countryLists.size(); i++)
             {
                 //CHECK
-                if(countryLists.get(i).getName().toUpperCase().contains(text))
+                if(countryLists.get(i).getCountry().toUpperCase().contains(text))
                 {
                     filteredCountries.add(countryLists.get(i));
                 }
@@ -51,7 +52,13 @@ public class CityListPresenter extends Filter implements  CityList.Presenter {
 
     @Override
     protected void publishResults(CharSequence constraint, FilterResults results) {
-        view.get().updateList((ArrayList<Country>) results.values);
+        filteredCountryList = (ArrayList<Country>) results.values;
+        view.get().updateList(filteredCountryList);
+    }
+
+    @Override
+    public ArrayList<Country> getFilteredCountryList() {
+        return filteredCountryList;
     }
 
     @Override

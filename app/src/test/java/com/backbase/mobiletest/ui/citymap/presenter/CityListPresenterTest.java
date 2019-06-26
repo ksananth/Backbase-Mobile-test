@@ -1,6 +1,7 @@
 package com.backbase.mobiletest.ui.citymap.presenter;
 
 import android.content.Context;
+import android.widget.Filter;
 
 import com.backbase.mobiletest.data.DataManager;
 import com.backbase.mobiletest.ui.citymap.contract.CityList;
@@ -9,7 +10,7 @@ import com.backbase.mobiletest.ui.citymap.model.city.Coordinates;
 import com.backbase.mobiletest.ui.citymap.model.city.Country;
 import com.backbase.mobiletest.ui.citymap.model.city.CountryList;
 import com.backbase.mobiletest.utils.BaseResponseModel;
-
+import android.widget.Filter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -64,6 +65,16 @@ public class CityListPresenterTest {
         presenter.filterWith("Hol");
 
         Mockito.verify(view).updateList(Matchers.<ArrayList<Country>>any());
+    }
+
+    @Test
+    public void shouldReturnFilteredList_When_filterCalled() {
+        stubDataManager();
+        presenter.init();
+
+        presenter.filterWith("Hur");
+
+        assertEquals(1, presenter.getFilteredCountryList().size());
     }
 
     private void stubDataManager() {
