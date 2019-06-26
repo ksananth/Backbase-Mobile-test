@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Backbase Mobile Test</string>
+    <string name="title_city_detail">MapView</string>
 </resources>
