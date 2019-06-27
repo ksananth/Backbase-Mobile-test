@@ -85,8 +85,8 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityLi
                     Intent intent = new Intent(context, CityMapActivity.class);
                     intent.putExtra(KEY_SELECTED_COUNTRY, countries.get(pos).getCountry());
                     intent.putExtra(KEY_SELECTED_CITY, countries.get(pos).getName());
-                    intent.putExtra(KEY_SELECTED_LAT, countries.get(pos).getCoord().getLat());
-                    intent.putExtra(KEY_SELECTED_LONG, countries.get(pos).getCoord().getLon());
+                    intent.putExtra(KEY_SELECTED_LAT, countries.get(pos).getCoord().getLat().toString());
+                    intent.putExtra(KEY_SELECTED_LONG, countries.get(pos).getCoord().getLon().toString());
 
                     context.startActivity(intent);
                 }

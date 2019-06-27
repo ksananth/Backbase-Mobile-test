@@ -27,14 +27,11 @@ public class CityMapFragment extends Fragment implements CityMap.View, OnMapRead
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        cityMapPresenter = new CityMapPresenter(CityMapFragment.this, getArguments());
-        cityMapPresenter.init();
-
         Activity activity = this.getActivity();
-            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar);
-            if (appBarLayout != null) {
-                appBarLayout.setTitle(cityMapPresenter.getCity() + "," +cityMapPresenter.getCountry());
-            }
+            //CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar);
+            //if (appBarLayout != null) {
+              //  appBarLayout.setTitle(cityMapPresenter.getCity() + "," +cityMapPresenter.getCountry());
+            //}
 
     }
 
@@ -42,14 +39,17 @@ public class CityMapFragment extends Fragment implements CityMap.View, OnMapRead
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.city_map, container, false);
+
+        cityMapPresenter = new CityMapPresenter(CityMapFragment.this, getArguments());
+        cityMapPresenter.init();
+
         return rootView;
     }
 
     @Override
     public void initializeMap() {
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
@@ -59,7 +59,7 @@ public class CityMapFragment extends Fragment implements CityMap.View, OnMapRead
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(cityMapPresenter.getLatitude(), cityMapPresenter.getLongitude());
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.addMarker(new MarkerOptions().position(sydney).title(cityMapPresenter.getCity()+","+cityMapPresenter.getCountry()));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
