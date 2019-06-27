@@ -45,6 +45,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.backbase.mobiletest.ui.citymap.view.CityListActivity" />
         </activity>
+        <activity
+            android:name=".ui.about.AboutActivity"
+            android:label="@string/title_city_detail"
+            android:parentActivityName=".ui.citymap.view.CityListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.backbase.mobiletest.ui.citymap.view.CityListActivity" />
+        </activity>
     </application>
 
 </manifest>
