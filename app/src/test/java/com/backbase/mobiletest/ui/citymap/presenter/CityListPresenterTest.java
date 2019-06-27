@@ -5,8 +5,6 @@ import com.backbase.mobiletest.ui.citymap.contract.CityList;
 import com.backbase.mobiletest.ui.citymap.model.CityListModel;
 import com.backbase.mobiletest.ui.citymap.model.city.Coordinates;
 import com.backbase.mobiletest.ui.citymap.model.city.Country;
-import com.backbase.mobiletest.ui.citymap.model.city.CountryList;
-import com.backbase.mobiletest.utils.BaseResponseModel;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -53,7 +51,7 @@ public class CityListPresenterTest {
         stubDataManager();
         presenter.init();
 
-        Mockito.verify(dataManager).getAssetContent(CITIES_FILENAME, CountryList.class);
+        Mockito.verify(dataManager).getAssetContent(CITIES_FILENAME);
     }
 
     @Test
@@ -63,7 +61,7 @@ public class CityListPresenterTest {
 
         presenter.filterWith(FILTER);
 
-        Mockito.verify(view).updateList(Matchers.<ArrayList<Country>>any());
+        Mockito.verify(view).updateList(Matchers.<ArrayList<Country>>any(), any(String.class));
     }
 
     @Test
@@ -77,22 +75,20 @@ public class CityListPresenterTest {
     }
 
     private void stubDataManager() {
-        CountryList value = new CountryList();
         ArrayList<Country> list = new ArrayList<>();
 
         Country country = new Country();
-        country.setCountry("Hurzuf");
-        country.setName("UA");
+        country.setCountry("UA");
+        country.setName("Hurzuf");
         country.setCoord(new Coordinates(1.000, 2.00));
         list.add(country);
 
         Country country2 = new Country();
-        country2.setCountry("Holubynka");
-        country2.setName("SE");
+        country2.setCountry("SE");
+        country2.setName("Holubynka");
         country2.setCoord(new Coordinates(5.000, 6.00));
         list.add(country2);
 
-        value.setCountryList(list);
-        when(dataManager.getAssetContent(any(String.class), (Class<? extends BaseResponseModel>) any())).thenReturn(value);
+        when(dataManager.getAssetContent(any(String.class))).thenReturn(list);
     }
 }
