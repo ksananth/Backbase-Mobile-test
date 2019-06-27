@@ -1,7 +1,11 @@
 package com.backbase.mobiletest.ui.citymap.adapter;
 
+import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +18,7 @@ import java.util.ArrayList;
 
 public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityListHolder> {
     private ArrayList<Country> countries;
+    private String searchedText;
     private boolean mTwoPane;
 
     public CityListAdapter(ArrayList<Country> countryArrayList, boolean mTwoPane)
@@ -32,9 +37,19 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityLi
     @Override
     public void onBindViewHolder(CityListHolder holder, int position) {
 
-        holder.txtCity.setText(countries.get(position).getName()+" , "+countries.get(position).getCountry());
+        String cityName = countries.get(position).getName();
+        holder.txtCity.setText(cityName +" , "+countries.get(position).getCountry());
         holder.txtLatCoordinates.setText(countries.get(position).getCoord().getLat().toString());
         holder.txtLongCoordinates.setText(countries.get(position).getCoord().getLon().toString());
+
+        if (searchedText != null && cityName.toLowerCase().contains(searchedText.toLowerCase())) {
+            int startPos = cityName.toLowerCase().indexOf(searchedText.toLowerCase());
+            int endPos = startPos + searchedText.length();
+            Spannable spanString = Spannable.Factory.getInstance().newSpannable(holder.txtCity.getText());
+            spanString.setSpan(new ForegroundColorSpan(Color.RED), startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            holder.txtCity.setText(spanString);
+        }
+
 
         holder.setItemClickListener(new ItemClickListener() {
             @Override
@@ -50,8 +65,9 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityLi
         return countries.size();
     }
 
-    public void setFilteredList(ArrayList<Country> results) {
+    public void setFilteredList(ArrayList<Country> results, String searchedText) {
         countries = results;
+        this.searchedText = searchedText;
     }
 
     public class CityListHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

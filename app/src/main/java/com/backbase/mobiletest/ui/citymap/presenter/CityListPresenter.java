@@ -48,9 +48,9 @@ public class CityListPresenter extends Filter implements  CityList.Presenter {
     }
 
     @Override
-    protected void publishResults(CharSequence constraint, FilterResults results) {
+    protected void publishResults(CharSequence searchedText, FilterResults results) {
         filteredCountryList = (ArrayList<Country>) results.values;
-        view.get().updateList(filteredCountryList);
+        view.get().updateList(filteredCountryList, searchedText.toString());
     }
 
     @Override

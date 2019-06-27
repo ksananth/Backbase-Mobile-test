@@ -67,8 +67,8 @@ public class CityListActivity extends Activity implements CityList.View, SearchV
     }
 
     @Override
-    public void updateList(ArrayList<Country> results) {
-        adapter.setFilteredList(results);
+    public void updateList(ArrayList<Country> results, String searchedText) {
+        adapter.setFilteredList(results, searchedText);
         adapter.notifyDataSetChanged();
     }
 

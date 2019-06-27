@@ -18,6 +18,6 @@ public interface CityList {
     }
 
     interface View {
-        void updateList(ArrayList<Country> results);
+        void updateList(ArrayList<Country> results, String searchedText);
     }
 }
