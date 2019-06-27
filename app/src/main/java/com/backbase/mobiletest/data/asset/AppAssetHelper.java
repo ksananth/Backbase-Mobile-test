@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.List;
 
 public class AppAssetHelper implements AssetHelper {
 
