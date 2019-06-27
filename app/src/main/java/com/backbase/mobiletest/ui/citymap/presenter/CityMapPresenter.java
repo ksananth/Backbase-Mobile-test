@@ -11,13 +11,16 @@ public class CityMapPresenter implements CityMap.Presenter {
     public static final String KEY_SELECTED_LAT = "KEY_SELECTED_LAT";
     public static final String KEY_SELECTED_LONG = "KEY_SELECTED_LONG";
 
+    private CityMap.View view;
+
     private String country;
     private String city;
     private double lat;
     private double lon;
     private Bundle bundle;
 
-    public CityMapPresenter(Bundle bundle){
+    public CityMapPresenter(CityMap.View view, Bundle bundle){
+        this.view = view;
         this.bundle = bundle;
     }
 
@@ -27,6 +30,8 @@ public class CityMapPresenter implements CityMap.Presenter {
         setCity(KEY_SELECTED_CITY);
         setLangitude(KEY_SELECTED_LAT);
         setLongitude(KEY_SELECTED_LONG);
+
+        view.initializeMap();
     }
 
     @Override

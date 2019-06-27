@@ -27,7 +27,7 @@ public class CityMapFragment extends Fragment implements CityMap.View, OnMapRead
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        cityMapPresenter = new CityMapPresenter(getArguments());
+        cityMapPresenter = new CityMapPresenter(CityMapFragment.this, getArguments());
         cityMapPresenter.init();
 
         Activity activity = this.getActivity();
