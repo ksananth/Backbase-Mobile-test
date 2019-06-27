@@ -32,8 +32,9 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityLi
     @Override
     public void onBindViewHolder(CityListHolder holder, int position) {
 
-        holder.txtCity.setText(countries.get(position).getName());
-        holder.txtCoordinates.setText(countries.get(position).getCoord().getLat().toString());
+        holder.txtCity.setText(countries.get(position).getName()+" , "+countries.get(position).getCountry());
+        holder.txtLatCoordinates.setText(countries.get(position).getCoord().getLat().toString());
+        holder.txtLongCoordinates.setText(countries.get(position).getCoord().getLon().toString());
 
         holder.setItemClickListener(new ItemClickListener() {
             @Override
@@ -54,7 +55,9 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityLi
     }
 
     public class CityListHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView txtCity,txtCoordinates;
+        TextView txtCity;
+        TextView txtLatCoordinates;
+        TextView txtLongCoordinates;
 
         ItemClickListener itemClickListener;
 
@@ -62,7 +65,8 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityLi
         public CityListHolder(View itemView) {
             super(itemView);
             this.txtCity = (TextView) itemView.findViewById(R.id.txt_city);
-            this.txtCoordinates = (TextView) itemView.findViewById(R.id.txt_coordinates);
+            this.txtLatCoordinates = (TextView) itemView.findViewById(R.id.txt_lat_coordinates);
+            this.txtLongCoordinates = (TextView) itemView.findViewById(R.id.txt_long_coordinates);
 
             itemView.setOnClickListener(this);
         }

@@ -3,6 +3,8 @@ package com.backbase.mobiletest.ui.citymap.view;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 
@@ -32,13 +34,11 @@ public class CityListActivity extends Activity implements CityList.View, SearchV
 
         mTwoPane = isTwoPane();
 
-
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.list_city);
         SearchView searchView = (SearchView)findViewById(R.id.search_view);
+
         setupRecyclerView(recyclerView);
-        searchView.setIconified(false);
-        searchView.setIconifiedByDefault(false);
-        searchView.setOnQueryTextListener(this);
+        setUpSearchView(searchView);
     }
 
     private boolean isTwoPane() {
@@ -53,8 +53,17 @@ public class CityListActivity extends Activity implements CityList.View, SearchV
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
         adapter = new CityListAdapter(cityListPresenter.getCountryList(), mTwoPane);
         recyclerView.setAdapter(adapter);
+    }
+
+    private void setUpSearchView(SearchView searchView) {
+        searchView.setIconified(false);
+        searchView.setIconifiedByDefault(false);
+        searchView.setOnQueryTextListener(this);
     }
 
     @Override
