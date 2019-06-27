@@ -39,15 +39,15 @@ public class CityMapPresenterTest {
 
         assertEquals("NL", presenter.getCountry());
         assertEquals("Amsterdam", presenter.getCity());
-        assertEquals("2.000", presenter.getLatitude());
-        assertEquals("1.000", presenter.getLongitude());
+        assertEquals(2.004, presenter.getLatitude(),0.0);
+        assertEquals(1.005, presenter.getLongitude(),0.0);
     }
 
     private Bundle stubBundle() {
         when(bundle.getString(KEY_SELECTED_CITY)).thenReturn("Amsterdam");
         when(bundle.getString(KEY_SELECTED_COUNTRY)).thenReturn("NL");
-        when(bundle.getString(KEY_SELECTED_LAT)).thenReturn("2.000");
-        when(bundle.getString(KEY_SELECTED_LONG)).thenReturn("1.000");
+        when(bundle.getString(KEY_SELECTED_LAT)).thenReturn("2.004");
+        when(bundle.getString(KEY_SELECTED_LONG)).thenReturn("1.005");
         return bundle;
     }
 }

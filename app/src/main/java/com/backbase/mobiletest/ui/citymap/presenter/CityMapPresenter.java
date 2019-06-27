@@ -13,8 +13,8 @@ public class CityMapPresenter implements CityMap.Presenter {
 
     private String country;
     private String city;
-    private String lat;
-    private String lon;
+    private double lat;
+    private double lon;
     private Bundle bundle;
 
     public CityMapPresenter(Bundle bundle){
@@ -40,12 +40,12 @@ public class CityMapPresenter implements CityMap.Presenter {
     }
 
     @Override
-    public String getLatitude() {
+    public double getLatitude() {
         return this.lat;
     }
 
     @Override
-    public String getLongitude() {
+    public double getLongitude() {
         return this.lon;
     }
 
@@ -58,10 +58,10 @@ public class CityMapPresenter implements CityMap.Presenter {
     }
 
     private void setLangitude(String key) {
-        lat = bundle.getString(key);
+        lat = Double.parseDouble(bundle.getString(key));
     }
 
     private void setLongitude(String key) {
-        lon = bundle.getString(key);
+        lon = Double.parseDouble(bundle.getString(key));
     }
 }
