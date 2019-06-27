@@ -29,6 +29,8 @@ public class CityMapActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        toolbar.setTitle(getIntent().getStringExtra(CityMapFragment.KEY_SELECTED_CITY));
+
 
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
@@ -42,6 +44,16 @@ public class CityMapActivity extends AppCompatActivity {
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction().add(R.id.item_detail_container, fragment).commit();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
