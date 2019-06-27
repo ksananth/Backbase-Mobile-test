@@ -5,11 +5,11 @@ public class CityMap {
         void init();
         String getCity();
         String getCountry();
-        String getLatitude();
-        String getLongitude();
+        double getLatitude();
+        double getLongitude();
     }
 
     public interface View {
-        void showMap(String lat, String lon);
+        void initializeMap();
     }
 }
