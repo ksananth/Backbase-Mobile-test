@@ -23,6 +23,11 @@ import com.backbase.mobiletest.ui.citymap.view.CityMapFragment;
 
 import java.util.ArrayList;
 
+import static com.backbase.mobiletest.ui.citymap.presenter.CityMapPresenter.KEY_SELECTED_CITY;
+import static com.backbase.mobiletest.ui.citymap.presenter.CityMapPresenter.KEY_SELECTED_COUNTRY;
+import static com.backbase.mobiletest.ui.citymap.presenter.CityMapPresenter.KEY_SELECTED_LAT;
+import static com.backbase.mobiletest.ui.citymap.presenter.CityMapPresenter.KEY_SELECTED_LONG;
+
 public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityListHolder> {
     private CityListActivity context;
     private ArrayList<Country> countries;
@@ -67,10 +72,10 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityLi
 
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
-                    arguments.putString(CityMapFragment.KEY_SELECTED_COUNTRY, countries.get(pos).getCountry());
-                    arguments.putString(CityMapFragment.KEY_SELECTED_CITY, countries.get(pos).getName());
-                    arguments.putString(CityMapFragment.KEY_SELECTED_LAT, countries.get(pos).getCoord().getLat().toString());
-                    arguments.putString(CityMapFragment.KEY_SELECTED_LONG, countries.get(pos).getCoord().getLon().toString());
+                    arguments.putString(KEY_SELECTED_COUNTRY, countries.get(pos).getCountry());
+                    arguments.putString(KEY_SELECTED_CITY, countries.get(pos).getName());
+                    arguments.putString(KEY_SELECTED_LAT, countries.get(pos).getCoord().getLat().toString());
+                    arguments.putString(KEY_SELECTED_LONG, countries.get(pos).getCoord().getLon().toString());
                     CityMapFragment fragment = new CityMapFragment();
                     fragment.setArguments(arguments);
                     context.getSupportFragmentManager().beginTransaction()
@@ -78,10 +83,10 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityLi
                             .commit();
                 } else {
                     Intent intent = new Intent(context, CityMapActivity.class);
-                    intent.putExtra(CityMapFragment.KEY_SELECTED_COUNTRY, countries.get(pos).getCountry());
-                    intent.putExtra(CityMapFragment.KEY_SELECTED_CITY, countries.get(pos).getName());
-                    intent.putExtra(CityMapFragment.KEY_SELECTED_LAT, countries.get(pos).getCoord().getLat());
-                    intent.putExtra(CityMapFragment.KEY_SELECTED_LONG, countries.get(pos).getCoord().getLon());
+                    intent.putExtra(KEY_SELECTED_COUNTRY, countries.get(pos).getCountry());
+                    intent.putExtra(KEY_SELECTED_CITY, countries.get(pos).getName());
+                    intent.putExtra(KEY_SELECTED_LAT, countries.get(pos).getCoord().getLat());
+                    intent.putExtra(KEY_SELECTED_LONG, countries.get(pos).getCoord().getLon());
 
                     context.startActivity(intent);
                 }

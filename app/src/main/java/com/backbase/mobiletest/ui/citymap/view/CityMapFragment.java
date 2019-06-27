@@ -11,30 +11,23 @@ import android.widget.TextView;
 
 import com.backbase.mobiletest.R;
 import com.backbase.mobiletest.ui.citymap.contract.CityMap;
+import com.backbase.mobiletest.ui.citymap.presenter.CityMapPresenter;
 
 public class CityMapFragment extends Fragment implements CityMap.View{
-    public static final String KEY_SELECTED_COUNTRY = "KEY_SELECTED_COUNTRY";
-    public static final String KEY_SELECTED_CITY= "KEY_SELECTED_CITY";
-    public static final String KEY_SELECTED_LAT = "KEY_SELECTED_LAT";
-    public static final String KEY_SELECTED_LONG = "KEY_SELECTED_LONG";
-    private String country;
-    private String city;
-    private String lat;
-    private String lon;
+
+    private CityMapPresenter cityMapPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setValue(country, KEY_SELECTED_COUNTRY);
-        setValue(city, KEY_SELECTED_CITY);
-        setValue(lat, KEY_SELECTED_LAT);
-        setValue(lon, KEY_SELECTED_LONG);
+        cityMapPresenter = new CityMapPresenter(getArguments());
+        cityMapPresenter.init();
 
         Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar);
             if (appBarLayout != null) {
-                appBarLayout.setTitle(city + "," +country);
+                appBarLayout.setTitle(cityMapPresenter.getCity() + "," +cityMapPresenter.getCountry());
             }
 
     }
@@ -43,7 +36,7 @@ public class CityMapFragment extends Fragment implements CityMap.View{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.city_map, container, false);
-        ((TextView) rootView.findViewById(R.id.item_detail)).setText(country);
+        ((TextView) rootView.findViewById(R.id.item_detail)).setText(cityMapPresenter.getCountry());
         return rootView;
     }
 
