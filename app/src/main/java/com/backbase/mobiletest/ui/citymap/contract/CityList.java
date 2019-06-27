@@ -1,7 +1,6 @@
 package com.backbase.mobiletest.ui.citymap.contract;
 
 import com.backbase.mobiletest.ui.citymap.model.city.Country;
-import com.backbase.mobiletest.ui.citymap.model.city.CountryList;
 
 import java.util.ArrayList;
 

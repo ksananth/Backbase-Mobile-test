@@ -10,8 +10,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.backbase.mobiletest.R;
+import com.backbase.mobiletest.ui.citymap.contract.CityMap;
 
-public class CityMapFragment extends Fragment {
+public class CityMapFragment extends Fragment implements CityMap.View{
     public static final String KEY_SELECTED_COUNTRY = "KEY_SELECTED_COUNTRY";
     public static final String KEY_SELECTED_CITY= "KEY_SELECTED_CITY";
     public static final String KEY_SELECTED_LAT = "KEY_SELECTED_LAT";
@@ -50,5 +51,10 @@ public class CityMapFragment extends Fragment {
         if (getArguments().containsKey(key)) {
             value = getArguments().getString(key);
         }
+    }
+
+    @Override
+    public void showMap(String lat, String lon) {
+
     }
 }
