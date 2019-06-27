@@ -1,7 +1,5 @@
 package com.backbase.mobiletest.ui.citymap.contract;
 
-import android.os.Bundle;
-
 public class CityMap {
     public interface Presenter {
         void init();

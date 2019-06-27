@@ -31,7 +31,10 @@ public class CityMapActivity extends AppCompatActivity {
 
         toolbar.setTitle(getIntent().getStringExtra(KEY_SELECTED_CITY));
 
+        loadCityMapFragment(savedInstanceState);
+    }
 
+    private void loadCityMapFragment(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.

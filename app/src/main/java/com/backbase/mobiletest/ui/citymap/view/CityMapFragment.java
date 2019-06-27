@@ -40,12 +40,6 @@ public class CityMapFragment extends Fragment implements CityMap.View{
         return rootView;
     }
 
-    private void setValue(String value, String key) {
-        if (getArguments().containsKey(key)) {
-            value = getArguments().getString(key);
-        }
-    }
-
     @Override
     public void showMap(String lat, String lon) {
 
