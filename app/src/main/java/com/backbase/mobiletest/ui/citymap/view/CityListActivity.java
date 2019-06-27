@@ -1,6 +1,7 @@
 package com.backbase.mobiletest.ui.citymap.view;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.widget.ImageView;
 
 import com.backbase.mobiletest.R;
 import com.backbase.mobiletest.data.AppDataManager;
@@ -56,6 +58,7 @@ public class CityListActivity extends AppCompatActivity implements CityList.View
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
+        dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.line));
         recyclerView.addItemDecoration(dividerItemDecoration);
         adapter = new CityListAdapter(CityListActivity.this, cityListPresenter.getCountryList(), mTwoPane);
         recyclerView.setAdapter(adapter);

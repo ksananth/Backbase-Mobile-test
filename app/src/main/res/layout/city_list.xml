@@ -9,20 +9,23 @@ android:layout_height="match_parent"
 tools:context="com.backbase.mobiletest.ui.citymap.view.CityListActivity">
 
     <RelativeLayout
-        android:background="#ccc"
-        android:padding="10dp"
+        android:background="@color/colorPrimary"
+        android:padding="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <android.support.v7.widget.SearchView
+            android:background="@drawable/rounded_corner_white"
             android:id="@+id/search_view"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             app:queryHint="Query"
-            android:layout_margin="16dp"
+            android:layout_margin="5dp"
             app:layout_constraintTop_toTopOf="parent"></android.support.v7.widget.SearchView>
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_corner"
         android:id="@+id/list_city"
         android:name="com.backbase.mobiletest.ItemListFragment"
         android:layout_width="match_parent"
