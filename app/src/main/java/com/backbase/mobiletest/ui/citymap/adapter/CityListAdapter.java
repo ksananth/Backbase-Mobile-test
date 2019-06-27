@@ -1,6 +1,10 @@
 package com.backbase.mobiletest.ui.citymap.adapter;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
@@ -13,23 +17,28 @@ import android.widget.TextView;
 
 import com.backbase.mobiletest.R;
 import com.backbase.mobiletest.ui.citymap.model.city.Country;
+import com.backbase.mobiletest.ui.citymap.view.CityListActivity;
+import com.backbase.mobiletest.ui.citymap.view.CityMapActivity;
+import com.backbase.mobiletest.ui.citymap.view.CityMapFragment;
 
 import java.util.ArrayList;
 
 public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityListHolder> {
+    private CityListActivity context;
     private ArrayList<Country> countries;
     private String searchedText;
     private boolean mTwoPane;
 
-    public CityListAdapter(ArrayList<Country> countryArrayList, boolean mTwoPane)
+    public CityListAdapter(CityListActivity context, ArrayList<Country> countryArrayList, boolean mTwoPane)
     {
+        this.context = context;
         this.countries = countryArrayList;
         this.mTwoPane = mTwoPane;
     }
 
     @Override
     public CityListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.city_list_content,null);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.city_list_content,null);
         CityListHolder holder=new CityListHolder(v);
         return holder;
     }
@@ -55,6 +64,27 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityLi
             @Override
             public void onItemClick(View v, int pos) {
                 Snackbar.make(v, countries.get(pos).getName(),Snackbar.LENGTH_SHORT).show();
+
+                if (mTwoPane) {
+                    Bundle arguments = new Bundle();
+                    arguments.putString(CityMapFragment.KEY_SELECTED_COUNTRY, countries.get(pos).getCountry());
+                    arguments.putString(CityMapFragment.KEY_SELECTED_CITY, countries.get(pos).getName());
+                    arguments.putString(CityMapFragment.KEY_SELECTED_LAT, countries.get(pos).getCoord().getLat().toString());
+                    arguments.putString(CityMapFragment.KEY_SELECTED_LONG, countries.get(pos).getCoord().getLon().toString());
+                    CityMapFragment fragment = new CityMapFragment();
+                    fragment.setArguments(arguments);
+                    context.getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.item_detail_container, fragment)
+                            .commit();
+                } else {
+                    Intent intent = new Intent(context, CityMapActivity.class);
+                    intent.putExtra(CityMapFragment.KEY_SELECTED_COUNTRY, countries.get(pos).getCountry());
+                    intent.putExtra(CityMapFragment.KEY_SELECTED_CITY, countries.get(pos).getName());
+                    intent.putExtra(CityMapFragment.KEY_SELECTED_LAT, countries.get(pos).getCoord().getLat());
+                    intent.putExtra(CityMapFragment.KEY_SELECTED_LONG, countries.get(pos).getCoord().getLon());
+
+                    context.startActivity(intent);
+                }
             }
         });
 

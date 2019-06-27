@@ -3,6 +3,7 @@ package com.backbase.mobiletest.ui.citymap.view;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +19,7 @@ import com.backbase.mobiletest.ui.citymap.presenter.CityListPresenter;
 
 import java.util.ArrayList;
 
-public class CityListActivity extends Activity implements CityList.View, SearchView.OnQueryTextListener {
+public class CityListActivity extends AppCompatActivity implements CityList.View, SearchView.OnQueryTextListener {
 
     private boolean mTwoPane;
     private CityListPresenter cityListPresenter;
@@ -56,7 +57,7 @@ public class CityListActivity extends Activity implements CityList.View, SearchV
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
-        adapter = new CityListAdapter(cityListPresenter.getCountryList(), mTwoPane);
+        adapter = new CityListAdapter(CityListActivity.this, cityListPresenter.getCountryList(), mTwoPane);
         recyclerView.setAdapter(adapter);
     }
 
