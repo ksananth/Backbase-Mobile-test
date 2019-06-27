@@ -29,6 +29,8 @@ import static com.backbase.mobiletest.ui.citymap.presenter.CityMapPresenter.KEY_
 import static com.backbase.mobiletest.ui.citymap.presenter.CityMapPresenter.KEY_SELECTED_LONG;
 
 public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityListHolder> {
+    public static final String TITLE_LATITUDE = "Latitude: ";
+    public static final String TITLE_LONGITUDE = "Longitude: ";
     private CityListActivity context;
     private ArrayList<Country> countries;
     private String searchedText;
@@ -53,8 +55,8 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityLi
 
         String cityName = countries.get(position).getName();
         holder.txtCity.setText(cityName +" , "+countries.get(position).getCountry());
-        holder.txtLatCoordinates.setText(countries.get(position).getCoord().getLat().toString());
-        holder.txtLongCoordinates.setText(countries.get(position).getCoord().getLon().toString());
+        holder.txtLatCoordinates.setText(TITLE_LATITUDE +countries.get(position).getCoord().getLat().toString());
+        holder.txtLongCoordinates.setText(TITLE_LONGITUDE +countries.get(position).getCoord().getLon().toString());
 
         if (searchedText != null && cityName.toLowerCase().contains(searchedText.toLowerCase())) {
             int startPos = cityName.toLowerCase().indexOf(searchedText.toLowerCase());
