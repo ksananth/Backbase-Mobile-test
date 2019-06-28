@@ -25,6 +25,8 @@ public class AboutPresenterImplTest {
     Context context;
     @Mock
     AppDataManager appDataManager;
+    @Mock
+    About.Presenter.Callback callback;
 
     private AboutPresenterImpl presenter;
 
@@ -46,21 +48,20 @@ public class AboutPresenterImplTest {
     }
 
     @Test
-    public void shouldHideProgress_When_getAboutInfoSuccess() {
+    public void shouldUpdateUI_When_getAboutInfoSuccess() {
         AboutInfo about = stubSuccess();
 
         presenter.getAboutInfo();
 
-        Mockito.verify(view).hideProgress();
         Mockito.verify(view).updateUI(about);
     }
 
     @Test
-    public void shouldHideProgress_When_getAboutInfoFailed() {
+    public void shouldHShowError_When_getAboutInfoFailed() {
         stubFail();
         presenter.getAboutInfo();
 
-        Mockito.verify(view).hideProgress();
+        Mockito.verify(view).showError();
     }
 
     private void stubFail() {

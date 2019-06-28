@@ -30,7 +30,6 @@ public class AboutPresenterImpl implements About.Presenter {
             About.View aboutViewImpl = aboutView.get();
 
             if(aboutViewImpl != null){
-                aboutViewImpl.hideProgress();
                 aboutViewImpl.updateUI(aboutInfo);
             }
         }
@@ -39,7 +38,6 @@ public class AboutPresenterImpl implements About.Presenter {
         public void onFail() {
             About.View aboutViewImpl = aboutView.get();
             if (aboutViewImpl != null){
-                aboutViewImpl.hideProgress();
                 aboutViewImpl.showError();
             }
         }

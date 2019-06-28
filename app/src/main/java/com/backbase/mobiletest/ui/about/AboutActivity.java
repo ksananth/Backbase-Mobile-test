@@ -66,6 +66,7 @@ public class AboutActivity extends AppCompatActivity implements About.View {
     @Override
     public void showError() {
         errorView.setVisibility(android.view.View.VISIBLE);
+        hideProgress();
     }
 
     @Override
@@ -87,8 +88,9 @@ public class AboutActivity extends AppCompatActivity implements About.View {
                 setCompanyAddress(aboutInfo.getCompanyAddress());
                 setCompanyPostalCode(aboutInfo.getCompanyPostal());
                 setCompanyCity(aboutInfo.getCompanyCity());
-                setAboutInfo(aboutInfo.getAboutInfo());            }
+                setAboutInfo(aboutInfo.getAboutInfo());
+            }
         }, 1000);
-
+        hideProgress();
     }
 }
