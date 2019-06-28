@@ -28,7 +28,9 @@ Develop an Android app to list cities containing around 200k entries in JSON and
 * Added Test cases for all business logic in Model and Presenter
 * Added Android Test cases to test the View.
 * Integrated with Continous Integration tool (Travis CI) [![Build Status](https://travis-ci.org/ksananth/Backbase-Mobile-test.svg?branch=master)](https://travis-ci.org/ksananth/Backbase-Mobile-test)
-.
+
+## Architecture Blueprint:
+![](https://github.com/2019-SOW-DEV-003/LeapYears/blob/master/screenshot.gif)
 
 ## Run
 To run this project (make sure mobile is connected and usb debugging is enabled):
