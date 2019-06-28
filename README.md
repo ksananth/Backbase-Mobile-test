@@ -23,11 +23,11 @@ Develop an Android app to list cities containing around 200k entries in JSON and
 * Provide UI/unit tests for the information screen code we provided you. You are allowed to refactor if needed.
 
 ## Key points to highlight about this kata:
-* Followed Test Driven Developemnt
-* Used MVP architectural pattern to seperate development of the UI and business logic
+* Followed Test Driven Development
+* Used MVP architectural pattern to separate development of the UI and business logic
 * Added Test cases for all business logic in Model and Presenter
 * Added Android Test cases to test the View.
-* Integrated with Continous Integration tool (Travis CI) [![Build Status](https://travis-ci.org/ksananth/Backbase-Mobile-test.svg?branch=master)](https://travis-ci.org/ksananth/Backbase-Mobile-test)
+* Integrated with Continuous Integration tool (Travis CI) [![Build Status](https://travis-ci.org/ksananth/Backbase-Mobile-test.svg?branch=master)](https://travis-ci.org/ksananth/Backbase-Mobile-test)
 
 ## Architecture Blueprint:
 ![](https://github.com/ksananth/Backbase-Mobile-test/blob/master/blueprint.png)
