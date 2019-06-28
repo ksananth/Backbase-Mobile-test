@@ -36,7 +36,7 @@ Develop an Android app to list cities containing around 200k entries in JSON and
 To run this project (make sure mobile is connected and usb debugging is enabled):
 
 ```
-$ ./gradlew clean build installDebug
+$ ./gradlew clean build installRelease
 ```
 To run tests (Junit and Espresso):
 
