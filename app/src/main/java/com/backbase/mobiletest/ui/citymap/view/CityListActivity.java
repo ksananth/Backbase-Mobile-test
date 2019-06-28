@@ -2,6 +2,7 @@ package com.backbase.mobiletest.ui.citymap.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -102,8 +103,14 @@ public class CityListActivity extends AppCompatActivity implements CityList.View
 
     @Override
     public void hideProgressDialog() {
-        progressBar.setVisibility(View.GONE);
-        container.setVisibility(View.VISIBLE);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressBar.setVisibility(View.GONE);
+                container.setVisibility(View.VISIBLE);
+            }
+        }, 1000);
+
     }
 
     @Override
