@@ -50,8 +50,11 @@ To generate report of tests:
 $ ./gradlew build jacocoTestReport assembleAndroidTest createDebugCoverageReport
 ```
 ## Code Coverage Report
-![](https://github.com/2019-SOW-DEV-003/LeapYears/blob/master/report.png)
-###### Note: There is some issue with uploading coverage to codecov. Android studio shows 100% code coverage whereas this tool shows 71.43%
+#### Espresso Test Result
+![](https://github.com/ksananth/Backbase-Mobile-test/blob/master/espresso_dashboard.png)
+
+#### Unit Test Result
+![](https://github.com/ksananth/Backbase-Mobile-test/blob/master/unittest_dashboard.png)
 
 ## Output
 ![](https://github.com/ksananth/Backbase-Mobile-test/blob/master/screenshot.gif)
