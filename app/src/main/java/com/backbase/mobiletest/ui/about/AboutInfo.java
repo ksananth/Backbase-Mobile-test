@@ -1,11 +1,13 @@
 package com.backbase.mobiletest.ui.about;
 
+import com.backbase.mobiletest.utils.BaseResponseModel;
+
 /**
  * Created by Backbase R&D B.V on 28/06/2018.
  * DTO representing aboutInfo object
  */
 
-public class AboutInfo {
+public class AboutInfo extends BaseResponseModel {
 
     private String companyName;
     private String companyAddress;

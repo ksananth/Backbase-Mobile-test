@@ -20,7 +20,6 @@ public class CityListPresenter extends Filter implements  CityList.Presenter {
         this.model = new WeakReference<>(model);
     }
 
-
     @Override
     protected FilterResults performFiltering(CharSequence text) {
         FilterResults results = new FilterResults();

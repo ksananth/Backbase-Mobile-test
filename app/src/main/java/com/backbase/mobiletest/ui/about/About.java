@@ -26,5 +26,6 @@ public interface About {
         void showError();
         void showProgress();
         void hideProgress();
+        void updateUI(AboutInfo aboutInfo);
     }
 }

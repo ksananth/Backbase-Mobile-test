@@ -2,8 +2,8 @@ package com.backbase.mobiletest.ui.about;
 
 import android.content.Context;
 
-import com.backbase.mobiletest.ui.citymap.model.CityListModel;
-import com.backbase.mobiletest.ui.citymap.presenter.CityListPresenter;
+import com.backbase.mobiletest.data.AppDataManager;
+import com.backbase.mobiletest.utils.BaseResponseModel;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,8 +12,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static com.backbase.mobiletest.ui.citymap.model.CityListModel.CITIES_FILENAME;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AboutPresenterImplTest {
@@ -22,12 +23,14 @@ public class AboutPresenterImplTest {
     About.View view;
     @Mock
     Context context;
+    @Mock
+    AppDataManager appDataManager;
 
     private AboutPresenterImpl presenter;
 
     @Before
     public void setUp() {
-        presenter = new AboutPresenterImpl(view, context);
+        presenter = new AboutPresenterImpl(view, context, appDataManager);
     }
 
     @Test
@@ -40,5 +43,24 @@ public class AboutPresenterImplTest {
         presenter.getAboutInfo();
 
         Mockito.verify(view).showProgress();
+    }
+
+    @Test
+    public void shouldHideProgress_When_getAboutInfoSuccess() {
+        presenter.getAboutInfo();
+
+        Mockito.verify(view).hideProgress();
+    }
+
+    @Test
+    public void shouldHideProgress_When_getAboutInfoFailed() {
+        stubFail();
+        presenter.getAboutInfo();
+
+        Mockito.verify(view).hideProgress();
+    }
+
+    private void stubFail() {
+        when(appDataManager.parse(any(String.class), (Class<? extends BaseResponseModel>) any())).thenReturn(null);
     }
 }

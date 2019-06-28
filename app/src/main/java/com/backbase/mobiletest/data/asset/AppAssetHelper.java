@@ -5,6 +5,7 @@ import android.content.res.AssetManager;
 import android.util.Log;
 
 import com.backbase.mobiletest.ui.citymap.model.city.Country;
+import com.backbase.mobiletest.utils.BaseResponseModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -22,7 +23,8 @@ public class AppAssetHelper implements AssetHelper {
         this.context = new WeakReference<>(context);
     }
 
-    private String getJson(String filename) {
+    @Override
+    public String getJson(String filename) {
         if(context.get() != null){
             try{
                 AssetManager manager = context.get().getAssets();
@@ -48,5 +50,12 @@ public class AppAssetHelper implements AssetHelper {
     @Override
     public ArrayList<Country> getAssetContent(String filename) {
         return parseJson(getJson(filename) );
+    }
+
+    @Override
+    public BaseResponseModel parse(String json, Class<? extends BaseResponseModel> response){
+        Gson gson = new Gson();
+        BaseResponseModel responseModel = gson.fromJson(json, response);
+        return responseModel;
     }
 }

@@ -107,7 +107,6 @@ public class CityListPresenterTest {
         list.add(country2);
 
         when(dataManager.getAssetContent(any(String.class))).thenReturn(list);
-
     }
 
 }

@@ -6,6 +6,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.backbase.mobiletest.R;
+import com.backbase.mobiletest.data.AppDataManager;
 
 
 public class AboutActivity extends AppCompatActivity implements About.View {
@@ -23,7 +24,7 @@ public class AboutActivity extends AppCompatActivity implements About.View {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        AboutPresenterImpl aboutPresenter = new AboutPresenterImpl(this, this);
+        AboutPresenterImpl aboutPresenter = new AboutPresenterImpl(this, this, new AppDataManager(this));
         companyName = findViewById(R.id.companyName);
         companyAddress = findViewById(R.id.companyAdress);
         companyPostal = findViewById(R.id.companypostal);
@@ -74,5 +75,14 @@ public class AboutActivity extends AppCompatActivity implements About.View {
     @Override
     public void hideProgress() {
         progressBar.setVisibility(android.view.View.GONE);
+    }
+
+    @Override
+    public void updateUI(AboutInfo aboutInfo) {
+        setCompanyName(aboutInfo.getCompanyName());
+        setCompanyAddress(aboutInfo.getCompanyAddress());
+        setCompanyPostalCode(aboutInfo.getCompanyPostal());
+        setCompanyCity(aboutInfo.getCompanyCity());
+        setAboutInfo(aboutInfo.getAboutInfo());
     }
 }
