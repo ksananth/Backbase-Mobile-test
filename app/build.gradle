@@ -2,6 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'jacoco-android'
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('keystore')
+            storePassword 'backbase'
+            keyAlias = 'backbase'
+            keyPassword 'backbase'
+        }
+    }
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
     testOptions {
@@ -17,14 +25,17 @@ android {
     }
     buildTypes {
         release {
+            shrinkResources false
+            minifyEnabled false
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-        buildTypes {
-            debug {
-                testCoverageEnabled true
-            }
+
+        debug {
+            testCoverageEnabled true
         }
+
     }
     lintOptions {
         abortOnError false
