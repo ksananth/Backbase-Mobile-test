@@ -14,30 +14,28 @@ import java.lang.ref.WeakReference;
 public class AboutModelImpl implements About.Model {
 
     private static final String TAG = AboutModelImpl.class.getSimpleName();
-    private final About.Presenter presenter;
     private final WeakReference<Context> context;
     private AppDataManager appDataManager;
     private static final String FILE_NAME = "aboutInfo.json";
 
-    public AboutModelImpl(@NonNull About.Presenter presenter, @NonNull Context context, AppDataManager appDataManager){
-        this.presenter = presenter;
+    public AboutModelImpl(@NonNull Context context, AppDataManager appDataManager){
         this.context = new WeakReference<>(context);
         this.appDataManager = appDataManager;
     }
 
     @Override
-    public void getAboutInfo() {
+    public void getAboutInfo(About.Presenter.Callback callback) {
         String aboutInfoJson = getAboutInfoFromAssets();
 
         if(aboutInfoJson != null && !aboutInfoJson.isEmpty()){
     		AboutInfo aboutInfo = parseAboutInfo();
     		if (aboutInfo != null){
-        		presenter.onSuccess(aboutInfo);
+                callback.onSuccess(aboutInfo);
         		return;
    		 	}
 		}
 
-		presenter.onFail();
+        callback.onFail();
     }
 
     private AboutInfo parseAboutInfo() {

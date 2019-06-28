@@ -8,13 +8,15 @@ package com.backbase.mobiletest.ui.about;
 public interface About {
 
     interface Model {
-        void getAboutInfo();
+        void getAboutInfo(Presenter.Callback callback);
     }
 
     interface Presenter {
         void getAboutInfo();
-        void onSuccess(AboutInfo aboutInfo);
-        void onFail();
+        interface Callback {
+            void onSuccess(AboutInfo aboutInfo);
+            void onFail();
+        }
     }
 
     interface View {

@@ -30,7 +30,7 @@ public class AboutPresenterImplTest {
 
     @Before
     public void setUp() {
-        presenter = new AboutPresenterImpl(view, context, appDataManager);
+        presenter = new AboutPresenterImpl(view, new AboutModelImpl(context, appDataManager));
     }
 
     @Test
@@ -47,9 +47,13 @@ public class AboutPresenterImplTest {
 
     @Test
     public void shouldHideProgress_When_getAboutInfoSuccess() {
+        AboutInfo about = new AboutInfo();
+        about.setCompanyName("Backbase");
+        stubSuccess(about);
         presenter.getAboutInfo();
 
         Mockito.verify(view).hideProgress();
+        Mockito.verify(view).updateUI(about);
     }
 
     @Test
@@ -62,5 +66,10 @@ public class AboutPresenterImplTest {
 
     private void stubFail() {
         when(appDataManager.parse(any(String.class), (Class<? extends BaseResponseModel>) any())).thenReturn(null);
+    }
+
+    private void stubSuccess(AboutInfo about) {
+        when(appDataManager.getJson(any(String.class))).thenReturn("{}");
+        when(appDataManager.parse(any(String.class), (Class<? extends BaseResponseModel>) any())).thenReturn(about);
     }
 }
