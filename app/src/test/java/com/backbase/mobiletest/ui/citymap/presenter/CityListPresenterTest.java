@@ -1,7 +1,5 @@
 package com.backbase.mobiletest.ui.citymap.presenter;
 
-import android.os.Handler;
-
 import com.backbase.mobiletest.data.DataManager;
 import com.backbase.mobiletest.ui.citymap.contract.CityList;
 import com.backbase.mobiletest.ui.citymap.model.CityListModel;
@@ -14,9 +12,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.mockito.stubbing.Answer;
 
 import java.util.ArrayList;
 
@@ -24,8 +20,6 @@ import static com.backbase.mobiletest.ui.citymap.model.CityListModel.CITIES_FILE
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyLong;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
