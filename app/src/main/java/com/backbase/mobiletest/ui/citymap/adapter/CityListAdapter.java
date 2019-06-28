@@ -1,14 +1,11 @@
 package com.backbase.mobiletest.ui.citymap.adapter;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
-import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +42,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityLi
 
     @Override
     public CityListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.city_list_content,null);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.city_list_content, parent,false);
         CityListHolder holder=new CityListHolder(v);
         return holder;
     }
