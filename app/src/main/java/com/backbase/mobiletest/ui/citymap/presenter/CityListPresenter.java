@@ -1,6 +1,5 @@
 package com.backbase.mobiletest.ui.citymap.presenter;
 
-import android.os.Handler;
 import android.widget.Filter;
 
 import com.backbase.mobiletest.ui.citymap.contract.CityList;
@@ -67,26 +66,24 @@ public class CityListPresenter extends Filter implements  CityList.Presenter {
     @Override
     public void init() {
         view.get().showProgressDialog();
-
-        countryLists = model.get().getCityList();
-
-        if(countryLists != null && countryLists.size() > 0)
-            hideProgressDoalog();
-        else
-            view.get().showError();
-    }
-
-    private void hideProgressDoalog() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                view.get().hideProgressDialog();
-            }
-        }, 2000);
+        model.get().fetchCityList(new CityListCallback());
     }
 
     @Override
     public void filterWith(CharSequence filterText) {
         publishResults(filterText, performFiltering(filterText));
+    }
+
+    private class CityListCallback implements ListCallback {
+        @Override
+        public void onError() {
+            view.get().showError();
+        }
+
+        @Override
+        public void onSuccess(ArrayList<Country> list) {
+            countryLists = list;
+            view.get().hideProgressDialog();
+        }
     }
 }
