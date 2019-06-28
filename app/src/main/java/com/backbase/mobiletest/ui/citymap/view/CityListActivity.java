@@ -84,6 +84,8 @@ public class CityListActivity extends AppCompatActivity implements CityList.View
         searchView.setIconified(false);
         searchView.setIconifiedByDefault(false);
         searchView.setOnQueryTextListener(this);
+        searchView.requestFocusFromTouch();
+        searchView.clearFocus();
     }
 
     @Override
