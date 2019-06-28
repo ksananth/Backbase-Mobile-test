@@ -1,3 +1,4 @@
+install: gradle wrapper --gradle-version 4.2
 language: android
 jdk: oraclejdk8
 env:
@@ -8,8 +9,8 @@ android:
   components:
     - tools
     - platform-tools
-    - build-tools-23.0.3
-    - android-23
+    - build-tools-28.0.3
+    - android-27
     - extra-android-m2repository
     - $ANDROID_TARGET
     - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
