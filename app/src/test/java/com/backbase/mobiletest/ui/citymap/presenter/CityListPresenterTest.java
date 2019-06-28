@@ -82,6 +82,17 @@ public class CityListPresenterTest {
     }
 
     @Test
+    public void shouldReturnWholeListAndUpdateView_When_filterCalledWithEmpty() {
+        ArrayList<Country> list = stubDataManager();
+        presenter.init();
+
+        presenter.filterWith("");
+
+        Mockito.verify(view).updateList(Matchers.<ArrayList<Country>>any(), any(String.class));
+        assertEquals(presenter.getCountryList(),list);
+    }
+
+    @Test
     public void shouldReturnFilteredList_When_filterCalled() {
         stubDataManager();
         presenter.init();
@@ -91,7 +102,7 @@ public class CityListPresenterTest {
         assertEquals(1, presenter.getFilteredCountryList().size());
     }
 
-    private void stubDataManager() {
+    private ArrayList<Country> stubDataManager() {
         final ArrayList<Country> list = new ArrayList<>();
 
         Country country = new Country();
@@ -107,6 +118,7 @@ public class CityListPresenterTest {
         list.add(country2);
 
         when(dataManager.getAssetContent(any(String.class))).thenReturn(list);
+        return list;
     }
 
 }

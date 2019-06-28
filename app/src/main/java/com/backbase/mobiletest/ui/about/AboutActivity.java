@@ -89,8 +89,8 @@ public class AboutActivity extends AppCompatActivity implements About.View {
                 setCompanyPostalCode(aboutInfo.getCompanyPostal());
                 setCompanyCity(aboutInfo.getCompanyCity());
                 setAboutInfo(aboutInfo.getAboutInfo());
+                hideProgress();
             }
         }, 1000);
-        hideProgress();
     }
 }
