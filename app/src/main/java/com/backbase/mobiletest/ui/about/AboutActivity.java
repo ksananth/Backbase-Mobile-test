@@ -1,6 +1,7 @@
 package com.backbase.mobiletest.ui.about;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -78,11 +79,16 @@ public class AboutActivity extends AppCompatActivity implements About.View {
     }
 
     @Override
-    public void updateUI(AboutInfo aboutInfo) {
-        setCompanyName(aboutInfo.getCompanyName());
-        setCompanyAddress(aboutInfo.getCompanyAddress());
-        setCompanyPostalCode(aboutInfo.getCompanyPostal());
-        setCompanyCity(aboutInfo.getCompanyCity());
-        setAboutInfo(aboutInfo.getAboutInfo());
+    public void updateUI(final AboutInfo aboutInfo) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setCompanyName(aboutInfo.getCompanyName());
+                setCompanyAddress(aboutInfo.getCompanyAddress());
+                setCompanyPostalCode(aboutInfo.getCompanyPostal());
+                setCompanyCity(aboutInfo.getCompanyCity());
+                setAboutInfo(aboutInfo.getAboutInfo());            }
+        }, 1000);
+
     }
 }

@@ -47,9 +47,8 @@ public class AboutPresenterImplTest {
 
     @Test
     public void shouldHideProgress_When_getAboutInfoSuccess() {
-        AboutInfo about = new AboutInfo();
-        about.setCompanyName("Backbase");
-        stubSuccess(about);
+        AboutInfo about = stubSuccess();
+
         presenter.getAboutInfo();
 
         Mockito.verify(view).hideProgress();
@@ -68,8 +67,16 @@ public class AboutPresenterImplTest {
         when(appDataManager.parse(any(String.class), (Class<? extends BaseResponseModel>) any())).thenReturn(null);
     }
 
-    private void stubSuccess(AboutInfo about) {
+    private AboutInfo stubSuccess() {
+        AboutInfo about = new AboutInfo();
+        about.setCompanyName("Backbase");
+        about.setAboutInfo("Backbase");
+        about.setCompanyAddress("Test");
+        about.setCompanyCity("Amsterdam");
+        about.setCompanyPostal("1000");
+
         when(appDataManager.getJson(any(String.class))).thenReturn("{}");
         when(appDataManager.parse(any(String.class), (Class<? extends BaseResponseModel>) any())).thenReturn(about);
+        return about;
     }
 }
