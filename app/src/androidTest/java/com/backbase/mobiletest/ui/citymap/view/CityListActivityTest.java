@@ -1,6 +1,7 @@
 package com.backbase.mobiletest.ui.citymap.view;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.ViewAssertion;
 import android.support.test.espresso.matcher.ViewMatchers;
@@ -37,7 +38,7 @@ public class CityListActivityTest {
     public void shouldLoadCityList_When_OpenApp() throws InterruptedException {
         Thread.sleep(5000);
 
-        onView(withId(R.id.frameLayout)).check(getViewAssertion());
+        onView(withId(R.id.frameLayout)).check(visibleViewAssertion());
     }
 
 
@@ -46,10 +47,30 @@ public class CityListActivityTest {
         Thread.sleep(5000);
 
         onView(withId(R.id.list_city)).perform(actionOnItemAtPosition(0, click()));
-        onView(withId(R.id.map)).check(getViewAssertion());
+        onView(withId(R.id.map)).check(visibleViewAssertion());
     }
 
-    private ViewAssertion getViewAssertion() {
+    @Test
+    public void shouldShowTwoPane_When_Landscape() throws InterruptedException  {
+        Thread.sleep(5000);
+        rule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        Thread.sleep(5000);
+
+        onView(withId(R.id.list_city)).perform(actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.map)).check(visibleViewAssertion());
+    }
+
+    @Test
+    public void shouldLoadOnePane_When_Portrait() throws InterruptedException {
+        Thread.sleep(5000);
+
+        onView(withId(R.id.frameLayout)).check(visibleViewAssertion());
+    }
+
+    private ViewAssertion visibleViewAssertion() {
         return matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE));
+    }
+    private ViewAssertion hideViewAssertion() {
+        return matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.GONE));
     }
 }
