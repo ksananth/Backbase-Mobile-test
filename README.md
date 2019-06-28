@@ -1,8 +1,6 @@
 ## Backbase - Mobile Test
-
-[![Build Status](https://travis-ci.org/2019-SOW-DEV-003/LeapYears.svg?branch=master)](https://travis-ci.org/2019-SOW-DEV-003/LeapYears)
-[![codecov](https://codecov.io/gh/2019-SOW-DEV-003/LeapYears/branch/master/graph/badge.svg)](https://codecov.io/gh/2019-SOW-DEV-003/LeapYears)
-
+[![Build Status](https://travis-ci.org/ksananth/Backbase-Mobile-test.svg?branch=master)](https://travis-ci.org/ksananth/Backbase-Mobile-test)
+[![codecov](https://codecov.io/gh/ksananth/Backbase-Mobile-test/branch/master/graph/badge.svg)](https://codecov.io/gh/ksananth/Backbase-Mobile-test)
 ## Aim of this Project:
 Develop an Android app to list cities containing around 200k entries in JSON and show its mapview
 
@@ -29,13 +27,14 @@ Develop an Android app to list cities containing around 200k entries in JSON and
 * Used MVP architectural pattern to seperate development of the UI and business logic
 * Added Test cases for all business logic in Model and Presenter
 * Added Android Test cases to test the View.
-* Integrated with Continous Integration tool (Travis CI) [![Build Status](https://travis-ci.org/2019-SOW-DEV-003/LeapYears.svg?branch=master)](https://travis-ci.org/2019-SOW-DEV-003/LeapYears) and Code coverage tool (codecov) [![codecov](https://codecov.io/gh/2019-SOW-DEV-003/LeapYears/branch/master/graph/badge.svg)](https://codecov.io/gh/2019-SOW-DEV-003/LeapYears).
+* Integrated with Continous Integration tool (Travis CI) [![Build Status](https://travis-ci.org/ksananth/Backbase-Mobile-test.svg?branch=master)](https://travis-ci.org/ksananth/Backbase-Mobile-test)
+.
 
 ## Run
 To run this project (make sure mobile is connected and usb debugging is enabled):
 
 ```
-$ ./gradlew build installDebug
+$ ./gradlew clean build installDebug
 ```
 To run tests (Junit and Espresso):
 
