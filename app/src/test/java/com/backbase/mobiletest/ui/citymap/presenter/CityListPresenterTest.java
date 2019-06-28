@@ -62,6 +62,14 @@ public class CityListPresenterTest {
         Mockito.verify(view).showProgressDialog();
     }
 
+    @Test
+    public void shouldShowError_When_dataNotReceived() {
+        when(dataManager.getAssetContent(any(String.class))).thenReturn(null);
+        presenter.init();
+
+        Mockito.verify(view).showError();
+    }
+
 
     @Test
     public void shouldFilterListAndUpdateView_When_filterCalled() {
@@ -100,4 +108,5 @@ public class CityListPresenterTest {
 
         when(dataManager.getAssetContent(any(String.class))).thenReturn(list);
     }
+
 }
