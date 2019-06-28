@@ -55,6 +55,15 @@ public class CityListPresenterTest {
     }
 
     @Test
+    public void shouldShowDialog_When_initCalled() {
+        stubDataManager();
+        presenter.init();
+
+        Mockito.verify(view).showProgressDialog();
+    }
+
+
+    @Test
     public void shouldFilterListAndUpdateView_When_filterCalled() {
         stubDataManager();
         presenter.init();

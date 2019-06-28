@@ -18,5 +18,8 @@ public interface CityList {
 
     interface View {
         void updateList(ArrayList<Country> results, String searchedText);
+        void showProgressDialog();
+        void hideProgressDialog();
+        void showError();
     }
 }

@@ -3,6 +3,7 @@ package com.backbase.mobiletest.ui.citymap.model;
 import com.backbase.mobiletest.data.DataManager;
 import com.backbase.mobiletest.ui.citymap.contract.CityList;
 import com.backbase.mobiletest.ui.citymap.model.city.Country;
+import com.backbase.mobiletest.ui.citymap.presenter.CityListPresenter;
 
 import java.util.ArrayList;
 

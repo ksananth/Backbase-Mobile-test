@@ -10,6 +10,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 
 import com.backbase.mobiletest.R;
 import com.backbase.mobiletest.data.AppDataManager;
@@ -19,37 +21,43 @@ import com.backbase.mobiletest.ui.citymap.contract.CityList;
 import com.backbase.mobiletest.ui.citymap.model.CityListModel;
 import com.backbase.mobiletest.ui.citymap.model.city.Country;
 import com.backbase.mobiletest.ui.citymap.presenter.CityListPresenter;
+import com.backbase.mobiletest.utils.Utils;
 
 import java.util.ArrayList;
-
-import static com.backbase.mobiletest.ui.citymap.presenter.CityMapPresenter.KEY_SELECTED_CITY;
-import static com.backbase.mobiletest.ui.citymap.presenter.CityMapPresenter.KEY_SELECTED_COUNTRY;
-import static com.backbase.mobiletest.ui.citymap.presenter.CityMapPresenter.KEY_SELECTED_LAT;
-import static com.backbase.mobiletest.ui.citymap.presenter.CityMapPresenter.KEY_SELECTED_LONG;
 
 public class CityListActivity extends AppCompatActivity implements CityList.View, SearchView.OnQueryTextListener, View.OnClickListener {
 
     private boolean mTwoPane;
     private CityListPresenter cityListPresenter;
     private CityListAdapter adapter;
+    private ProgressBar progressBar;
+    private FrameLayout container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_list);
 
-        cityListPresenter = new CityListPresenter(this , new CityListModel(new AppDataManager(getApplicationContext())));
-        cityListPresenter.init();
-
         mTwoPane = isTwoPane();
 
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.list_city);
         FloatingActionButton about = (FloatingActionButton)findViewById(R.id.about);
         SearchView searchView = (SearchView)findViewById(R.id.search_view);
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        container = (FrameLayout)findViewById(R.id.frameLayout);
+
+        cityListPresenter = new CityListPresenter(this , new CityListModel(new AppDataManager(getApplicationContext())));
+        cityListPresenter.init();
 
         about.setOnClickListener(this);
         setupRecyclerView(recyclerView);
         setUpSearchView(searchView);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Utils.hideKeyboard(this);
     }
 
     private boolean isTwoPane() {
@@ -82,6 +90,23 @@ public class CityListActivity extends AppCompatActivity implements CityList.View
     public void updateList(ArrayList<Country> results, String searchedText) {
         adapter.setFilteredList(results, searchedText);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showProgressDialog() {
+        progressBar.setVisibility(View.VISIBLE);
+        container.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideProgressDialog() {
+        progressBar.setVisibility(View.GONE);
+        container.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showError() {
+
     }
 
     @Override
