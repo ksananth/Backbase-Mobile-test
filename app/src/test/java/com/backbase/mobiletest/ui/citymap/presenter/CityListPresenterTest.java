@@ -93,6 +93,15 @@ public class CityListPresenterTest {
     }
 
     @Test
+    public void shouldReturnAlphabeticallySortedList_When_init() {
+        stubDataManager();
+        presenter.init();
+
+        assertEquals(2, presenter.getCountryList().size());
+        assertEquals("Amsterdam", presenter.getCountryList().get(0).getName());
+    }
+
+    @Test
     public void shouldReturnFilteredList_When_filterCalled() {
         stubDataManager();
         presenter.init();
@@ -101,6 +110,7 @@ public class CityListPresenterTest {
 
         assertEquals(1, presenter.getFilteredCountryList().size());
     }
+
 
     private ArrayList<Country> stubDataManager() {
         final ArrayList<Country> list = new ArrayList<>();
@@ -113,7 +123,7 @@ public class CityListPresenterTest {
 
         Country country2 = new Country();
         country2.setCountry("SE");
-        country2.setName("Holubynka");
+        country2.setName("Amsterdam");
         country2.setCoord(new Coordinates(5.000, 6.00));
         list.add(country2);
 

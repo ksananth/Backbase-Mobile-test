@@ -7,6 +7,8 @@ import com.backbase.mobiletest.ui.citymap.model.city.Country;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class CityListPresenter extends Filter implements  CityList.Presenter {
 
@@ -31,7 +33,7 @@ public class CityListPresenter extends Filter implements  CityList.Presenter {
 
             for (int i = 0; i<countryLists.size(); i++) {
                 //CHECK
-                if(countryLists.get(i).getName().toUpperCase().contains(text)) {
+                if(countryLists.get(i).getName().toUpperCase().startsWith(text.toString())) {
                     filteredCountries.add(countryLists.get(i));
                 }
             }
@@ -81,8 +83,17 @@ public class CityListPresenter extends Filter implements  CityList.Presenter {
 
         @Override
         public void onSuccess(ArrayList<Country> list) {
-            countryLists = list;
+            countryLists = sortList(list);
             view.get().hideProgressDialog();
         }
+    }
+
+    private ArrayList<Country> sortList(ArrayList<Country> list){
+        Collections.sort(list, new Comparator<Country>() {
+            public int compare(Country v1, Country v2) {
+                return v1.getName().compareTo(v2.getName());
+            }
+        });
+        return list;
     }
 }
